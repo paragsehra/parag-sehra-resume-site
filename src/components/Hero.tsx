@@ -53,7 +53,7 @@ const Hero = () => {
             <div className="w-60 h-60 md:w-80 md:h-80 rounded-full bg-gradient-to-r from-blue-400 to-blue-600 
                           flex items-center justify-center shadow-xl">
               <img
-                src="public/Resources/ps.jpg"
+                src="Resources/ps.jpg"
                 alt="Parag Sehra"
                 className="w-56 h-56 md:w-76 md:h-76 rounded-full object-cover border-4 border-white"
               />

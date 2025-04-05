@@ -54,7 +54,7 @@ const Header = () => {
           <Button 
             variant="default" 
             className="bg-resume-accent hover:bg-resume-secondary transition-colors"
-            onClick={() => window.open('public/Resources/Resume Parag Sehra Full stack 12+.pdf')}
+            onClick={() => window.open('Resources/Resume Parag Sehra Full stack 12+.pdf')}
           >
             Download CV
           </Button>
@@ -91,7 +91,7 @@ const Header = () => {
             <Button 
               variant="default" 
               className="bg-resume-accent hover:bg-resume-secondary transition-colors w-full mt-2"
-              onClick={() => window.open('public/Resources/Resume Parag Sehra Full stack 12+.pdf')}
+              onClick={() => window.open('Resources/Resume Parag Sehra Full stack 12+.pdf')}
             >
               Download CV
             </Button>
