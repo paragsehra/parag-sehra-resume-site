@@ -63,7 +63,7 @@ const Header = () => {
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-2">
-          <ThemeToggle />
+          {/* <ThemeToggle /> */}
           <Button 
             variant="ghost" 
             size="icon" 
