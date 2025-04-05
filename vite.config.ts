@@ -5,7 +5,7 @@ import componentTagger from "./vite-plugin-component-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: '/parag-sehra-resume-site/',
+  base: '/',
   // server: {
   //   host: "::",
   //   port: 8080,

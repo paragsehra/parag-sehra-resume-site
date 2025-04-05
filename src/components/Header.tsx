@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
 import ThemeToggle from './ThemeToggle';
+import { HashLink } from 'react-router-hash-link';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -41,15 +42,15 @@ const Header = () => {
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex gap-6 items-center">
-          {navItems.map((item) => (
-            <a
-              key={item.label}
-              href={item.href}
-              className="text-resume-dark hover:text-resume-accent transition-colors font-medium"
-            >
-              {item.label}
-            </a>
-          ))}
+        {navItems.map((item) => (
+          <HashLink
+            key={item.label}
+            smooth
+            to={`/${item.href}`}
+            className="text-resume-dark hover:text-resume-accent transition-colors font-medium">
+            {item.label}
+          </HashLink>
+        ))}
           {/* <ThemeToggle /> */}
           <Button 
             variant="default" 
@@ -78,16 +79,16 @@ const Header = () => {
       {mobileMenuOpen && (
         <nav className="md:hidden bg-white p-5 shadow-lg animate-fade-in">
           <div className="flex flex-col gap-4">
-            {navItems.map((item) => (
-              <a
-                key={item.label}
-                href={item.href}
-                className="text-resume-dark hover:text-resume-accent py-2 transition-colors font-medium"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.label}
-              </a>
-            ))}
+          {navItems.map((item) => (
+            <HashLink
+              key={item.label}
+              smooth
+              to={`/${item.href}`}
+              className="text-resume-dark hover:text-resume-accent py-2 transition-colors font-medium"
+              onClick={() => setMobileMenuOpen(false)}>
+            {item.label}
+            </HashLink>
+          ))}
             <Button 
               variant="default" 
               className="bg-resume-accent hover:bg-resume-secondary transition-colors w-full mt-2"

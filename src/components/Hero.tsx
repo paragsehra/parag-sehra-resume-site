@@ -2,6 +2,8 @@
 import { Button } from '@/components/ui/button';
 import { ArrowDown, Briefcase, Mail, Phone, Linkedin, Github, MapPin } from 'lucide-react';
 import { useHref } from 'react-router-dom';
+import { HashLink } from 'react-router-hash-link';
+
 
 const Hero = () => {
   return (
@@ -39,12 +41,16 @@ const Hero = () => {
               communicator, leader, flexible, and team player.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Button className="bg-resume-accent hover:bg-resume-secondary" size="lg" onClick={() => window.location.href = '#contact'}>
+            <HashLink smooth to="/#contact">
+              <Button className="bg-resume-accent hover:bg-resume-secondary" size="lg">
                 Contact Me
               </Button>
-              <Button variant="outline" size="lg" className="border-resume-accent text-resume-accent hover:bg-resume-accent/10" onClick={() => window.location.href = '#projects'}>
+            </HashLink>
+            <HashLink smooth to="/#projects">
+              <Button variant="outline" size="lg" className="border-resume-accent text-resume-accent hover:bg-resume-accent/10">
                 View Projects
               </Button>
+            </HashLink>
             </div>
           </div>
         </div>
@@ -68,9 +74,9 @@ const Hero = () => {
       </div>
 
       <div className="flex justify-center mt-16 animate-bounce">
-        <a href="#experience" className="text-resume-accent p-2 rounded-full border border-resume-accent/30 hover:bg-resume-accent/10 transition-colors">
-          <ArrowDown size={24} />
-        </a>
+      <HashLink smooth to="/#experience" className="text-resume-accent p-2 rounded-full border border-resume-accent/30 hover:bg-resume-accent/10 transition-colors">
+        <ArrowDown size={24} />
+      </HashLink>
       </div>
     </section>
   );
