@@ -39,6 +39,10 @@ const Education = () => {
             </CardHeader>
             <CardContent>
               <div className="space-y-4">
+              <div className="border-l-2 border-resume-accent pl-4 py-2">
+                  <h3 className="font-semibold text-resume-primary">AWS Certified Solutions Architect - Associate</h3>
+                  <p className="text-resume-muted">AWS Certification</p>
+                </div>
                 <div className="border-l-2 border-resume-accent pl-4 py-2">
                   <h3 className="font-semibold text-resume-primary">486 Developing ASP.NET MVC Web Applications</h3>
                   <p className="text-resume-muted">Microsoft Certification</p>

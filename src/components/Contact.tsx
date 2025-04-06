@@ -1,14 +1,13 @@
-
 import { useState } from 'react';
+import { toast } from '@/components/ui/use-toast';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Card, CardContent } from '@/components/ui/card';
 import { Mail, Phone, Linkedin, Github, MapPin } from 'lucide-react';
-import { useToast } from '@/hooks/use-toast';
+import emailjs from 'emailjs-com';
 
 const Contact = () => {
-  const { toast } = useToast();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -18,33 +17,51 @@ const Contact = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prev) => ({
-      ...prev,
-      [name]: value,
-    }));
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
-      console.log('Form submitted:', formData);
-      toast({
-        title: "Message Sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
+
+    const serviceID = 'service_a4mkifk';
+    const templateID = 'template_g3yzlla';
+    const userID = 'onttXp0FjwM0V-P6A';
+
+    const templateParams = {
+      from_name: formData.name,
+      from_email: formData.email,
+      subject: formData.subject,
+      message: formData.message,
+    };
+
+    emailjs.send(serviceID, templateID, templateParams, userID)
+      .then(() => {
+        toast({
+          title: "Message Sent!",
+          description: "Thanks for reaching out. I'll get back to you soon.",
+        });
+        setFormData({
+          name: '',
+          email: '',
+          subject: '',
+          message: '',
+        });
+      })
+      .catch((error) => {
+        console.error('Email error:', error);
+        toast({
+          title: "Failed to send",
+          description: "Something went wrong. Please try again later.",
+          variant: "destructive",
+        });
+      })
+      .finally(() => {
+        setIsSubmitting(false);
       });
-      
-      setFormData({
-        name: '',
-        email: '',
-        subject: '',
-        message: '',
-      });
-      setIsSubmitting(false);
-    }, 1000);
   };
 
   return (
@@ -126,7 +143,7 @@ const Contact = () => {
                 <Input
                   id="name"
                   name="name"
-                  placeholder="John Doe"
+                  placeholder="Your Name"
                   required
                   value={formData.name}
                   onChange={handleChange}
@@ -141,7 +158,7 @@ const Contact = () => {
                   id="email"
                   name="email"
                   type="email"
-                  placeholder="john@example.com"
+                  placeholder="Your Email"
                   required
                   value={formData.email}
                   onChange={handleChange}
@@ -155,7 +172,7 @@ const Contact = () => {
                 <Input
                   id="subject"
                   name="subject"
-                  placeholder="Job Opportunity"
+                  placeholder="Mail Subject"
                   required
                   value={formData.subject}
                   onChange={handleChange}
