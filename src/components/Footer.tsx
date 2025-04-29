@@ -1,7 +1,7 @@
 
 import { Github, Linkedin, Mail } from 'lucide-react';
 import { HashLink } from 'react-router-hash-link';
-
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -50,11 +50,12 @@ const Footer = () => {
           </p>
           
           <div className="mt-4 md:mt-0">
-            <nav className="flex space-x-6">
+            <nav className="flex flex-wrap gap-4 md:gap-6 justify-center">
               <HashLink smooth to="/#home" className="text-sm text-gray-400 hover:text-white transition-colors">Home</HashLink>
               <HashLink smooth to="/#experience" className="text-sm text-gray-400 hover:text-white transition-colors">Experience</HashLink>
               <HashLink smooth to="/#projects" className="text-sm text-gray-400 hover:text-white transition-colors">Projects</HashLink>
               <HashLink smooth to="/#skills" className="text-sm text-gray-400 hover:text-white transition-colors">Skills</HashLink>
+              <Link to="/blog" className="text-sm text-gray-400 hover:text-white transition-colors">Blog</Link>
               <HashLink smooth to="/#contact" className="text-sm text-gray-400 hover:text-white transition-colors">Contact</HashLink>
             </nav>
           </div>

@@ -2,7 +2,7 @@
 import { useState, useEffect } from 'react';
 import { Button } from '@/components/ui/button';
 import { Menu, X } from 'lucide-react';
-import ThemeToggle from './ThemeToggle';
+import { NavLink } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 
 const Header = () => {
@@ -10,12 +10,13 @@ const Header = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
-    { label: 'Home', href: '#home' },
-    { label: 'Experience', href: '#experience' },
-    { label: 'Projects', href: '#projects' },
-    { label: 'Skills', href: '#skills' },
-    { label: 'Education', href: '#education' },
-    { label: 'Contact', href: '#contact' }
+    { label: 'Home', href: '/#home', isHash: true },
+    { label: 'Experience', href: '/#experience', isHash: true },
+    { label: 'Projects', href: '/#projects', isHash: true },
+    { label: 'Skills', href: '/#skills', isHash: true },
+    { label: 'Education', href: '/#education', isHash: true },
+    { label: 'Blog', href: '/blog', isHash: false },
+    { label: 'Contact', href: '/#contact', isHash: true }
   ];
 
   useEffect(() => {
@@ -36,22 +37,31 @@ const Header = () => {
       }`}
     >
       <div className="container-custom flex justify-between items-center">
-        <a href="#" className="text-resume-primary font-heading font-bold text-2xl">
+        <HashLink to="/#home" className="text-resume-primary font-heading font-bold text-2xl">
           Parag<span className="text-resume-accent">.</span><span className="text-resume-primary">dev</span>
-        </a>
+        </HashLink>
 
         {/* Desktop navigation */}
         <nav className="hidden md:flex gap-6 items-center">
-        {navItems.map((item) => (
-          <HashLink
-            key={item.label}
-            smooth
-            to={`/${item.href}`}
-            className="text-resume-dark hover:text-resume-accent transition-colors font-medium">
-            {item.label}
-          </HashLink>
-        ))}
-          {/* <ThemeToggle /> */}
+          {navItems.map((item) => (
+            item.isHash ? (
+              <HashLink
+                key={item.label}
+                smooth
+                to={item.href}
+                className="text-resume-dark hover:text-resume-accent transition-colors font-medium">
+                {item.label}
+              </HashLink>
+            ) : (
+              <NavLink
+                key={item.label}
+                to={item.href}
+                className={({ isActive }) => 
+                  `font-medium ${isActive ? 'text-resume-accent' : 'text-resume-dark hover:text-resume-accent transition-colors'}`}>
+                {item.label}
+              </NavLink>
+            )
+          ))}
           <Button 
             variant="default" 
             className="bg-resume-accent hover:bg-resume-secondary transition-colors"
@@ -63,7 +73,6 @@ const Header = () => {
 
         {/* Mobile menu button */}
         <div className="md:hidden flex items-center gap-2">
-          {/* <ThemeToggle /> */}
           <Button 
             variant="ghost" 
             size="icon" 
@@ -79,16 +88,27 @@ const Header = () => {
       {mobileMenuOpen && (
         <nav className="md:hidden bg-white p-5 shadow-lg animate-fade-in">
           <div className="flex flex-col gap-4">
-          {navItems.map((item) => (
-            <HashLink
-              key={item.label}
-              smooth
-              to={`/${item.href}`}
-              className="text-resume-dark hover:text-resume-accent py-2 transition-colors font-medium"
-              onClick={() => setMobileMenuOpen(false)}>
-            {item.label}
-            </HashLink>
-          ))}
+            {navItems.map((item) => (
+              item.isHash ? (
+                <HashLink
+                  key={item.label}
+                  smooth
+                  to={item.href}
+                  className="text-resume-dark hover:text-resume-accent py-2 transition-colors font-medium"
+                  onClick={() => setMobileMenuOpen(false)}>
+                  {item.label}
+                </HashLink>
+              ) : (
+                <NavLink
+                  key={item.label}
+                  to={item.href}
+                  className={({ isActive }) => 
+                    `py-2 font-medium ${isActive ? 'text-resume-accent' : 'text-resume-dark hover:text-resume-accent transition-colors'}`}
+                  onClick={() => setMobileMenuOpen(false)}>
+                  {item.label}
+                </NavLink>
+              )
+            ))}
             <Button 
               variant="default" 
               className="bg-resume-accent hover:bg-resume-secondary transition-colors w-full mt-2"
