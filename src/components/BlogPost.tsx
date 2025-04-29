@@ -1,7 +1,7 @@
 
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { blogPosts } from '@/data/blogPosts';
+import { blogPosts, getBlogPostBySlug } from '@/data/blogPosts';
 import { CalendarIcon, Clock, ArrowLeft } from 'lucide-react';
 
 interface BlogPostProps {

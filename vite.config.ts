@@ -1,6 +1,8 @@
+
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+// @ts-ignore - Let's ignore the missing declaration file for the component tagger plugin
 import componentTagger from "./vite-plugin-component-tagger";
 
 // https://vitejs.dev/config/
